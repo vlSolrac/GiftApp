@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-export const AddCategory = () => {
+export const AddCategory = ({ onNewValue }) => {
   const [value, setValue] = useState("");
 
   // Get input value
@@ -10,15 +10,18 @@ export const AddCategory = () => {
     setValue(target.value);
   };
 
-
   const submit = (event) => {
     // Evitar la recarga al dal enter
-    event.preventDefault()
+    event.preventDefault();
+    let valueInput = value.trim();
+    if (valueInput.length == 0) return;
 
+    onNewValue(valueInput);
+    setValue("");
   };
 
   return (
-    <form onSubmit={submit} >
+    <form onSubmit={submit}>
       <input
         className="form-control"
         placeholder="Buscar Gift"

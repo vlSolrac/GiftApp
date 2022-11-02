@@ -1,12 +1,19 @@
 import React from "react";
 import { useState } from "react";
 import { AddCategory } from "./components/AddCategory";
+import { GiftGrid } from "./components/GiftGrid";
 
 export const GiftExpertApp = () => {
   const [categories, setCategories] = useState([]);
 
   const addCategory = (value) => {
-    setCategories(["hola", ...categories]);
+    let valueRepeat = categories.find(
+      (x) => x.toLowerCase() == value.toLowerCase()
+    );
+
+    if (valueRepeat != null) return;
+
+    setCategories([value, ...categories]);
   };
 
   return (
@@ -15,14 +22,12 @@ export const GiftExpertApp = () => {
       <h1>GiftExpertAp</h1>
 
       {/* Input */}
-      <AddCategory />
+      <AddCategory onNewValue={addCategory} />
 
       {/* Gift List */}
-      <ol>
-        {categories.map((x, i) => (
-          <li key={x}>{x}</li>
-        ))}
-      </ol>
+      {categories.map((category) => (
+        <GiftGrid key={category} category={category} />
+      ))}
     </>
   );
 };
