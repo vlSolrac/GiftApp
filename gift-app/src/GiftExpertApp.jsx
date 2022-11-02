@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { AddCategory } from "./components/AddCategory";
 
 export const GiftExpertApp = () => {
   const [categories, setCategories] = useState([]);
@@ -14,8 +15,7 @@ export const GiftExpertApp = () => {
       <h1>GiftExpertAp</h1>
 
       {/* Input */}
-      <input className="form-control" type="text" />
-      <button className="btn btn-success" onClick={addCategory}> Add </button>
+      <AddCategory />
 
       {/* Gift List */}
       <ol>
