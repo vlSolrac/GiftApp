@@ -1,33 +1,28 @@
-import React from "react";
 import { useState } from "react";
 
-export const AddCategory = ({ onNewValue }) => {
-  const [value, setValue] = useState("");
+export const AddCategory = ({ onNewCategory }) => {
+  const [inputValue, setInputValue] = useState("");
 
-  // Get input value
-  // const inputChange = (event {target}) => {
-  const inputChange = ({ target }) => {
-    setValue(target.value);
+  const onInputChange = ({ target }) => {
+    setInputValue(target.value);
   };
 
-  const submit = (event) => {
-    // Evitar la recarga al dal enter
+  const onSubmit = (event) => {
     event.preventDefault();
-    let valueInput = value.trim();
-    if (valueInput.length == 0) return;
+    if (inputValue.trim().length <= 1) return;
 
-    onNewValue(valueInput);
-    setValue("");
+    // setCategories( categories => [ inputValue, ...categories ]);
+    setInputValue("");
+    onNewCategory(inputValue.trim());
   };
 
   return (
-    <form onSubmit={submit}>
+    <form onSubmit={onSubmit}>
       <input
-        className="form-control"
-        placeholder="Buscar Gift"
-        value={value}
-        onChange={(event) => inputChange(event)}
-        // onChange={inputChange}
+        type="text"
+        placeholder="Buscar gifs"
+        value={inputValue}
+        onChange={onInputChange}
       />
     </form>
   );

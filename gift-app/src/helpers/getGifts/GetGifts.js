@@ -1,13 +1,13 @@
-export const getGifts = async (category) => {
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=9iFBIBxonPfDrtWGa9HsZqCyEuYVvpA8&q=${category}&limit=10`;
-    let res = await fetch(url);
-    let { data } = await res.json();
-  
-    let gifts = data.map((g) => ({
-      id: g.id,
-      title: g.title,
-      url: g.images.downsized_medium.url,
-    }));
-  
-    return gifts;
-  };
+export const getGifs = async (category) => {
+  const url = `https://api.giphy.com/v1/gifs/search?api_key=kaJ1JwD4CuQgYun7YpTQpTr5p1qs1sQn&q=${category}&limit=10`;
+  const resp = await fetch(url);
+  const { data } = await resp.json();
+
+  const gifs = data.map((img) => ({
+    id: img.id,
+    title: img.title,
+    url: img.images.downsized_medium.url,
+  }));
+
+  return gifs;
+};
